@@ -1,0 +1,27 @@
+name: React native CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:  # Fixed indentation here
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js  # Fixed: Added space after hyphen
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint  # Fixed: Added space after hyphen
+        run: npm run lint
